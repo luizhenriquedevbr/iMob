@@ -1,0 +1,17 @@
+{
+  "name": "imob/php",
+  "description": "IMOB",
+  "autoload": {
+    "classmap": ["classes/"],
+    "files": ["bootstrap/bootstrap.php", "classes/host.php", "funcoes.php"]
+  },
+  "require": {
+    "php": "^8.1",
+    "ext-pdo": "*",
+    "profburial/wkhtmltopdf-binaries-osx": "0.12.1",
+    "knplabs/knp-snappy": "^1.2"
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^4.2"
+  }
+}

@@ -1,0 +1,33 @@
+version: '3.8'
+volumes:
+  imob-database-data:
+    driver: local
+services:
+  app:
+    image: dcci/php8.0-nginx
+    build:
+      context: ./docker/app
+    container_name: imob-app
+    volumes:
+      - .:/var/www/html
+    environment:
+      VIRTUAL_HOST: imob.test
+    networks:
+      - default
+      - proxy
+  database:
+    image: mysql:8.0
+    container_name: imob-database
+    volumes:
+      - imob-database-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=imob123
+      - MYSQL_DATABASE=imob
+      - MYSQL_USER=imob
+      - MYSQL_PASSWORD=imob123
+networks:
+  proxy:
+    external:
+      name: proxy
